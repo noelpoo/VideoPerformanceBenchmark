@@ -38,7 +38,6 @@ crop_height = 400
 
 stutter_upp_limit_time = 0.2
 test_data_count = 5
-tmp_file_sdcard = "/sdcard/demo.mp4"
 
 
 def add_tool_permission():

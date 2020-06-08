@@ -1,11 +1,9 @@
 import os
-import time
 import sys
 import subprocess
 import datetime
 
 from Common import *
-# from recorder import create_recoder
 
 
 class Benchmark(object):
@@ -66,7 +64,7 @@ class Benchmark(object):
 
         return ret
 
-    # returns [(ts, ti),....]
+
     @staticmethod
     def get_video_frame_info(ts, ti):
         if len(ts) != len(ti):
@@ -102,7 +100,7 @@ class Benchmark(object):
         tmp0_mp4 = self.tmp_file_dir + '/tmp0.mp4'
         if os.path.exists(tmp0_mp4):
             os.remove(tmp0_mp4)
-        # duration length set as 5 seconds
+        # test duration length set as 5 seconds
         command = [tool_ffmpeg, '-ss', '00:00:00', '-t', '5', '-i', video_file,
                    '-vcodec', 'copy', '-an', tmp0_mp4]
         subprocess.check_output(command)
