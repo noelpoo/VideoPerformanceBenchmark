@@ -32,10 +32,7 @@ tool_dir_tisi = tools_dir + 'tisi'
 
 tmp_dir = root_dir + 'tmp/'
 
-#cropping parameters
-crop_width = 280
-crop_height = 400
-
+#test parameters
 stutter_upp_limit_time = 0.2
 test_data_count = 5
 
