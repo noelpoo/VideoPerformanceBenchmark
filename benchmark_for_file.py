@@ -1,4 +1,3 @@
-import os
 import sys
 import subprocess
 import datetime
@@ -74,7 +73,7 @@ class Benchmark(object):
         ret = []
         len_of_frames = len(ts)
         for i in range(0, len_of_frames):
-            if ti[i] > 4:
+            if ti[i] > ti_upp_limit:
                 ret.append((ts[i], ti[i]))
         return ret
 
@@ -111,11 +110,12 @@ class Benchmark(object):
         org_video_format = eval(out.strip())
         width = int(org_video_format['streams'][0]['width'])
         height = int(org_video_format['streams'][0]['height'])
+        '''
         coded_width = int(org_video_format['streams'][0]['coded_width'])
         coded_height = int(org_video_format['streams'][0]['coded_height'])
         x = x if x != 0 else (width - crop_width) / 2
         y = y if y != 0 else (height - crop_height) / 2
-
+        '''
         tmp_mp4 = self.tmp_file_dir + '/tmp.mp4'
         if os.path.exists(tmp_mp4):
             os.remove(tmp_mp4)

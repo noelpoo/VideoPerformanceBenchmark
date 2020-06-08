@@ -32,7 +32,8 @@ tool_dir_tisi = tools_dir + 'tisi'
 
 tmp_dir = root_dir + 'tmp/'
 
-#test parameters
+# test parameters
+ti_upp_limit = 4
 stutter_upp_limit_time = 0.2
 test_data_count = 5
 
