@@ -31,6 +31,7 @@ tool_dir_ffmpeg = tools_dir + 'ffmpeg'
 tool_dir_tisi = tools_dir + 'tisi'
 
 tmp_dir = root_dir + 'tmp/'
+tisi_data_dir = root_dir + 'tmp_tisi/'
 
 # test parameters
 ti_upp_limit = 4
