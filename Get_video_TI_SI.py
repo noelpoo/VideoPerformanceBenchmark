@@ -27,9 +27,9 @@ class VideoTiSi(object):
         ts = self.get_video_ts(tmp_mp4)
         ti, si = self.get_video_ti_si(tmp_yuv, new_width, new_height)
         if len(ts) != len(ti):
-            raise Exception('len(ts) != len(ti)')
+            raise Exception(f'len(ts) != len(ti), len(ts) {len(ts)}, len(ti) {len(ti)}')
         elif len(ts) != len(si):
-            raise Exception('len(ts) != len(si)')
+            raise Exception(f'len(ts) != len(si), len(ts) {len(ts)}, len(si) {len(si)}')
         for i in range(0, len(ts)):
             with open(self.csv_file, 'a+') as f:
                 f.write('%f,%f,%f\n' % (ts[i], ti[i], si[i]))
@@ -74,9 +74,11 @@ class VideoTiSi(object):
         ret_si = []
         for line in lines:
             if line.startswith('SI('):
+                print(line)
                 si_val = safe_cast(line.split(' : ')[1], float, 0.0)
                 ret_si.append(si_val)
             elif line.startswith('TI('):
+                print(line)
                 ti_val = safe_cast(line.split(' : ')[1], float, 0.0)
                 ret_ti.append(ti_val)
 
@@ -87,7 +89,7 @@ class VideoTiSi(object):
         if os.path.exists(tmp0_mp4):
             os.remove(tmp0_mp4)
         # test duration length set as 5 seconds
-        command = [tool_ffmpeg, '-ss', '00:00:00', '-t', '60', '-i', video_file,
+        command = [tool_ffmpeg, '-ss', '00:00:20', '-t', '20', '-i', video_file,
                    '-vcodec', 'copy', '-an', tmp0_mp4]
         subprocess.check_output(command)
 
@@ -97,8 +99,8 @@ class VideoTiSi(object):
         org_video_format = eval(out.strip())
         width = int(org_video_format['streams'][0]['width'])
         height = int(org_video_format['streams'][0]['height'])
-        new_width, width_start = int(width / 2), int(width / 2)
-        new_height, height_start = int(height / 2), int(width / 2)
+        new_width, width_start = int(width / 10), int(width / 2 - width / (10 * 2))
+        new_height, height_start = int(height / 10), int(width / 2 - width / (10 * 2))
         tmp_mp4 = self.tmp_file_dir + '/tmp.mp4'
         if os.path.exists(tmp_mp4):
             os.remove(tmp_mp4)
